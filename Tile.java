@@ -2,7 +2,7 @@ package chess;
 
 public class Tile {
 
-	private Pieces piece;
+	private Pieces piece = null;
 	private int x;
 	private int y;
 	private String s;
@@ -30,44 +30,7 @@ public class Tile {
 		*/
 	}
 	
-//	public String toString() {
-//		return getS();
-//	}
-//	public Tile(int i, int j, Rook rook) {
-//		this.piece = rook;
-//		this.x = i;
-//		this.y = j;
-//	}
-//	
-//	public Tile(int i, int j, Knight knight) {
-//		this.piece = knight;
-//		this.x = i;
-//		this.y = j;
-//	}
-//	
-//	public Tile(int i, int j, Bishop bishop) {
-//		this.piece = bishop;
-//		this.x = i;
-//		this.y = j;
-//	}
-//	
-//	public Tile(int i, int j, Queen queen) {
-//		this.piece = queen;
-//		this.x = i;
-//		this.y = j;
-//	}
-//	
-//	public Tile(int i, int j, King king) {
-//		this.piece = king;
-//		this.x = i;
-//		this.y = j;
-//	}
-//	
-//	public Tile(int i, int j, Pawn pawn) {
-//		this.piece = pawn;
-//		this.x = i;
-//		this.y = j;
-//	}
+
 	
 	private void setY(int y) {
 		this.y = y;	
@@ -77,17 +40,11 @@ public class Tile {
 		this.x = x;
 	}
 	
-	private void setPieces(Pieces piece) {
+	public void setPieces(Pieces piece) {
 		this.piece = piece;
 	}
 	
-	private int getX() {
-		return x;	
-	}
 	
-	private int getY() {
-		return y;	
-	}
 	
 	Pieces getPieces() {
 		return piece;	

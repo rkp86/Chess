@@ -1,35 +1,35 @@
 package chess;
 
-import java.util.Scanner;
-
 //import java.util.ArrayList;
 
 public class Board {
 	
 	Pieces piece;
 	
-	Rook W_rook1 = new Rook(true, "wR ");       Rook B_rook1 = new Rook(false, "bR ");
-	Rook W_rook8 = new Rook(true, "wR ");       Rook B_rook8 = new Rook(false, "bR ");
+	Rook W_rook1 = new Rook("wR ");       Rook B_rook1 = new Rook("bR ");
+	Rook W_rook8 = new Rook("wR ");       Rook B_rook8 = new Rook( "bR ");
 
-	Knight W_knight2 = new Knight(true, "wN ");   Knight B_knight2  = new Knight(false, "bN ");
-	Bishop W_bishop3 = new Bishop(true, "wB ");   Bishop B_bishop3 = new Bishop(false, "bB ");
-	Knight W_knight7 = new Knight(true, "wN ");   Knight B_knight7  = new Knight(false, "bN ");
-	Bishop W_bishop6 = new Bishop(true, "wB ");   Bishop B_bishop6 = new Bishop(false, "bB ");
-	King W_king = new King(true, "wK ");        King B_king = new King(false, "bK ");
-	Queen W_queen = new Queen(true, "wQ ");     Queen B_queen = new Queen(false, "bQ ");
-	Pawn W_pawn1 = new Pawn(true, "wp ");       Pawn B_pawn1 = new Pawn(false, "bp ");
-	Pawn W_pawn2 = new Pawn(true, "wp ");       Pawn B_pawn2 = new Pawn(false, "bp ");
-	Pawn W_pawn3 = new Pawn(true, "wp ");       Pawn B_pawn3 = new Pawn(false, "bp ");
-	Pawn W_pawn4 = new Pawn(true, "wp ");       Pawn B_pawn4 = new Pawn(false, "bp ");
-	Pawn W_pawn5 = new Pawn(true, "wp ");       Pawn B_pawn5 = new Pawn(false, "bp ");
-	Pawn W_pawn6 = new Pawn(true, "wp ");       Pawn B_pawn6 = new Pawn(false, "bp ");
-	Pawn W_pawn7 = new Pawn(true, "wp ");       Pawn B_pawn7 = new Pawn(false, "bp ");
-	Pawn W_pawn8 = new Pawn(true, "wp ");       Pawn B_pawn8 = new Pawn(false, "bp ");
+	Knight W_knight2 = new Knight("wN ");   Knight B_knight2  = new Knight("bN ");
+	Bishop W_bishop3 = new Bishop("wB ");   Bishop B_bishop3 = new Bishop( "bB ");
+	Knight W_knight7 = new Knight("wN ");   Knight B_knight7  = new Knight( "bN ");
+	Bishop W_bishop6 = new Bishop( "wB ");   Bishop B_bishop6 = new Bishop( "bB ");
+	King W_king = new King("wK ");        King B_king = new King("bK ");
+	Queen W_queen = new Queen("wQ ");     Queen B_queen = new Queen("bQ ");
+	Pawn W_pawn1 = new Pawn("wp ");       Pawn B_pawn1 = new Pawn("bp ");
+	Pawn W_pawn2 = new Pawn("wp ");       Pawn B_pawn2 = new Pawn("bp ");
+	Pawn W_pawn3 = new Pawn("wp ");       Pawn B_pawn3 = new Pawn("bp ");
+	Pawn W_pawn4 = new Pawn("wp ");       Pawn B_pawn4 = new Pawn("bp ");
+	Pawn W_pawn5 = new Pawn("wp ");       Pawn B_pawn5 = new Pawn("bp ");
+	Pawn W_pawn6 = new Pawn("wp ");       Pawn B_pawn6 = new Pawn("bp ");
+	Pawn W_pawn7 = new Pawn("wp ");       Pawn B_pawn7 = new Pawn("bp ");
+	Pawn W_pawn8 = new Pawn("wp ");       Pawn B_pawn8 = new Pawn("bp ");
 	
 	
 	static String[][] boardPrintFormat = new String[8][8];
 	static Boolean[][] isPieceBoard = new Boolean[8][8];
 	static Tile[][] x = new Tile[8][8];
+	
+	public static boolean colorMove = true;
 	
 	public Board() {
 		/*|R_|K_|B_|Q_|KG|B_|K_|R_|8
@@ -78,9 +78,8 @@ public class Board {
 	}
 	
 	
-	
 	//Prints out the board in the given format
-	public static void printBoard(Board newBoard) {
+	public static void printBoard() {
 		for(int i = 0; i<8; i++) {
 			for(int j = 0; j<8; j++) {
 				if((i%2==1 && j%2==1) || (i%2==0 && j%2==0)) {
@@ -115,77 +114,53 @@ public class Board {
 		return null;
 	}
 
-	public boolean isPiece(int i, int j) {
+	public static boolean isPiece(int i, int j) {
 		if(x[i][j] != null ) {
 			return true;
 		}
 		return false;
 	}
 	
+
 	
-	public void playersMove(int color, Board newBoard) {
-		Scanner in = new Scanner(System.in);
-		if (color==0)  //0=false
-			System.out.println("Black's move: "); 
-		if (color==1)  //1=true
-			System.out.println("White's move: "); //later, we have to print white's move and black's move (FIRST=White)
-		
-		String x = in.nextLine();
-		in.close();
-		
-		if (x.equals("resign")) {
-			if (color == 0) System.out.println("White wins");
-			if (color == 1) System.out.println("Black wins");
-		}
-		else {
-			System.out.println(x); //CHANGE THIS TO METHOD CALL that reads the moves in String x
-			//newBoard.isPiece(i, j);
-			System.out.println(x.length());
-			String piece ="";
-			String move = "";
-			if (x.length() ==5) {		//THIS WILL CHANGE WHEN ACCOUNTING FOR N OR "DRAW" 		
-				piece = x.substring(0,2);
-				move = x.substring(3,5);
-			}
-			
-			getTile(piece,move);
-			
-		}
-		
-		printBoard(newBoard);
-	//	if (color == 0 ) playersMove(1,newBoard);
-	//	if (color == 1 ) playersMove(0,newBoard);
-	}
-	
-	
-	public void getTile(String piece, String move) {
-		char letter = piece.charAt(0);
+	public static void getTile(String piece, String move) {
+		//System.out.println(piece + " " + move);
+		char letter = piece.charAt(0); //CHANGE TO STRING SUBSTRING???
 		char number = piece.charAt(1); 
 		int i = -1, j = -1;
 		
 		switch (letter) {
-		case 'a' : i = 0;
-		case 'b' : i = 1;
-		case 'c' : i = 2;
-		case 'd' : i = 3;
-		case 'e' : i = 4;
-		case 'f' : i = 5;
-		case 'g' : i = 6;
-		case 'h' : i = 7;
+		case 'a' : j = 0; break;
+		case 'b' : j = 1; break;
+		case 'c' : j = 2; break;
+		case 'd' : j = 3; break;
+		case 'e' : j = 4; break;
+		case 'f' : j = 5; break;
+		case 'g' : j = 6; break;
+		case 'h' : j = 7; break;
 		}
 		
 		switch (number) {
-		case '8' : j = 0;
-		case '7' : j = 1;
-		case '6' : j = 2;
-		case '5' : j = 3;
-		case '4' : j = 4;
-		case '3' : j = 5;
-		case '2' : j = 6;
-		case '1' : j = 7;
+		case '8' : i = 0; break;
+		case '7' : i = 1; break;
+		case '6' : i = 2; break;
+		case '5' : i = 3; break;
+		case '4' : i = 4; break;
+		case '3' : i = 5; break;
+		case '2' : i = 6; break;
+		case '1' : i = 7; break;
 		}
 		
-		Pieces p = x[i][j].getPieces();
+		Pieces p = null;
+		if (isPiece(i, j)) {
+			 p = x[i][j].getPieces();
+			 
+			 String check = p.s.substring(0,1);
+			// System.out.println(check);
+			 if (colorMove == true && check.equals("b")) p.illegalMove();
+			 if (colorMove == false && check.equals("w")) p.illegalMove();
+			 
+		}
 		
 		int i1 = -1, j1 =-1;
 		
@@ -193,44 +168,47 @@ public class Board {
 		char number1 = move.charAt(1);  
 		
 		switch (letter1) {
-		case 'a' : i1 = 0;
-		case 'b' : i1 = 1;
-		case 'c' : i1 = 2;
-		case 'd' : i1 = 3;
-		case 'e' : i1 = 4;
-		case 'f' : i1 = 5;
-		case 'g' : i1 = 6;
-		case 'h' : i1 = 7;
+		case 'a' : j1 = 0; break;
+		case 'b' : j1 = 1; break;
+		case 'c' : j1 = 2; break;
+		case 'd' : j1 = 3; break;
+		case 'e' : j1 = 4; break;
+		case 'f' : j1 = 5; break;
+		case 'g' : j1 = 6; break;
+		case 'h' : j1 = 7; break;
 		}
 		
 		switch (number1) {
-		case '8' : j1 = 0;
-		case '7' : j1 = 1;
-		case '6' : j1 = 2;
-		case '5' : j1 = 3;
-		case '4' : j1 = 4;
-		case '3' : j1 = 5;
-		case '2' : j1 = 6;
-		case '1' : j1 = 7;
+		case '8' : i1 = 0; break;
+		case '7' : i1 = 1; break;
+		case '6' : i1 = 2; break;
+		case '5' : i1 = 3; break;
+		case '4' : i1 = 4; break;
+		case '3' : i1 = 5; break;
+		case '2' : i1 = 6; break;
+		case '1' : i1 = 7; break;
 		}
-		
+		//System.out.println(letter + " " + number + " " + letter1 + " " + number1);
+		//System.out.println(i + " " + j + " " + i1 + " " + j1);
 		if (p instanceof Pawn) {
-			p.movePiece(i1, j1);
+			//System.out.println("instance");
+			p.movePiece(p, i, j, i1, j1);
 		}
 		if (p instanceof Rook) {
-			p.movePiece(i1, j1);
+			p.movePiece(p, i, j, i1, j1);
 		}
 		if (p instanceof Knight) {
-			p.movePiece(i1, j1);
+			p.movePiece(p, i, j, i1, j1);
 		}
 		if (p instanceof Bishop) {
-			p.movePiece(i1, j1);
+			p.movePiece(p, i, j, i1, j1);
 		}		
 		if (p instanceof King) {
-			p.movePiece(i1, j1);
+			System.out.println("king");
+			p.movePiece(p, i, j, i1, j1);
 		}	
 		if (p instanceof Queen) {
-			p.movePiece(i1, j1);
+			p.movePiece(p, i, j, i1, j1);
 		}
 	}
 }

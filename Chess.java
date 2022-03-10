@@ -48,13 +48,13 @@ public class Chess {
 				//System.out.println(x.length());
 				String piece ="";
 				String move = "";
-				String extra = "";
-				if (x.length() >= 5) {		//THIS WILL CHANGE WHEN ACCOUNTING FOR N OR "DRAW" 		
+				String extra = ""; 
+				if (x.length() >= 5) {			
 					piece = x.substring(0,2);
 					move = x.substring(3,5);
 					if (x.length() > 5) { 
 						extra = x.substring(5).trim();
-						if (extra.equals("N")) { Pieces.promote = true; Pieces.promotion = extra; }
+						if (extra.equals("N") || extra.equals("R") || extra.equals("B") || extra.equals("Q")) { Pieces.promote = true; Pieces.promotion = extra; }
 						if (extra.equals("draw")) 
 							System.out.println("draw");
 						else				
@@ -64,7 +64,8 @@ public class Chess {
 						Board.getTile(piece,move);
 					
 				} else {
-					System.out.println("Invalid Input");
+					System.out.println("Illegal input, try again");
+					nextCall(false);
 				}
 			}
 		}
@@ -77,7 +78,8 @@ public class Chess {
 	}
 	
 	public static void nextCall(boolean next) {
-		
+		Pieces.promote = false;
+		Pieces.promotion = "";
 		if (next) {
 			Board.printBoard();
 			Board.colorMove = !Board.colorMove;

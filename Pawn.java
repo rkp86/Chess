@@ -2,7 +2,7 @@ package chess;
 
 public class Pawn extends Pieces {
 	
-	// public int count; //if 0, then can move up two blocks
+	public int count; //if 0, then can move up two blocks
 	public int move = 4; //can only move up one and two on the first move
 	
 	
@@ -10,7 +10,7 @@ public class Pawn extends Pieces {
 		this.count = 0;
 		
 	}
-	public Pawn( String st) {
+	public Pawn(String st) {
 		this.count = 0;
 		s = st;
 		
@@ -23,15 +23,18 @@ public class Pawn extends Pieces {
 	public void movePiece(Pieces p, int i, int j, int i1, int j1) {
 		String piece = p.s.substring(0,1);
 		boolean cont = true;
-		if (j==j1) { //same column good to go
-		
-			if (p.count == 0) { //first move
+		if (!Board.isPieceBoard[i][j]) p.illegalMove();
+		else if (j==j1) { //same column good to go
+			if (Board.colorMove && i==6) { //first move
 				
 				if (piece.equals("w")) {
-					if (i < i1 || i-2 > i1) { p.illegalMove(); cont = false; p.count++; }
+					if (i < i1 || i-2 > i1) { p.illegalMove(); cont = false; }
 				}
-				else if (piece.equals("b")){
-					if (i > i1 || i+2 < i1 ) { p.illegalMove(); cont = false; p.count++; }
+			}
+			else if (!Board.colorMove && i==1) { //first move
+				
+				if (piece.equals("b")){
+					if (i > i1 || i+2 < i1 ) { p.illegalMove(); cont = false;}
 				}
 			}
 			else {
@@ -44,8 +47,9 @@ public class Pawn extends Pieces {
 			}
 		
 			if (cont && !Board.isPieceBoard[i1][j1]) {
-				if (Board.colorMove && i1==0) Pieces.promote = true;
-				if (!Board.colorMove && i1==7) Pieces.promote = true;
+				if (Board.colorMove && i1==0) Pieces.promote = true; 
+				else if (!Board.colorMove && i1==7) Pieces.promote = true; 
+				else Pieces.promote = false;
 				p.move(p, i, j, i1, j1);
 			}
 			else p.illegalMove();
@@ -59,8 +63,9 @@ public class Pawn extends Pieces {
 			}
 
 			if (cont && Board.isPieceBoard[i1][j1]) {  //capturing a piece
-				if (Board.colorMove && i1==0) Pieces.promote = true;
-				if (!Board.colorMove && i1==7) Pieces.promote = true;
+				if (Board.colorMove && i1==0) { Pieces.promote = true;} 
+				else if (!Board.colorMove && i1==7) Pieces.promote = true; 
+				else Pieces.promote =false;
 				checkmate(i1, j1);
 				p.move(p, i, j, i1, j1);
 			}

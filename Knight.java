@@ -17,8 +17,8 @@ public class Knight extends Pieces {
 
 	public void movePiece(Pieces p, int i, int j, int i1, int j1) {
 		//boolean cont; 
-		
-		if (i-1 == i1 && j-2 == j1) {
+		if (!Board.isPieceBoard[i][j]) p.illegalMove();
+		else if (i-1 == i1 && j-2 == j1) {
 			checkmate(i1,j1);
 			p.move(p, i, j, i1, j1);
 		}

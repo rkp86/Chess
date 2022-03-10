@@ -204,7 +204,6 @@ public class Board {
 			p.movePiece(p, i, j, i1, j1);
 		}		
 		if (p instanceof King) {
-			System.out.println("king");
 			p.movePiece(p, i, j, i1, j1);
 		}	
 		if (p instanceof Queen) {

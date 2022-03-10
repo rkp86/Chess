@@ -148,12 +148,9 @@ public class King extends Pieces {
 		}
 		i1=i; j1=j;
 		while (i1 < 8 && j1 >= 0) {  //bottom left quadrant
-			System.out.println( i1 < 8 && j1 >= 0);
 			i1++;
 			j1--;
-			System.out.println(i1 + " " + j1);
 			if( i1 != 8 && j1 != -1 && Board.isPieceBoard[i1][j1]) {
-				System.out.println("in: "+ i1 + " " + j1);
 				if (Board.x[i1][j1].getPieces().s.substring(0,2).equals("wB") ||
 					Board.x[i1][j1].getPieces().s.substring(0,2).equals("wQ")||
 					Board.x[i1][j1].getPieces().s.substring(0,2).equals("wK")) {
@@ -172,7 +169,6 @@ public class King extends Pieces {
 			}	
 			
 		}
-					System.out.println("4: " + check );
 			i1=i; j1=j;
 		while (i1 >= 0 && j1 >= 0) {  //top left quadrant
 			i1--;
@@ -267,7 +263,6 @@ public class King extends Pieces {
 		boolean check = false;
 		int i1 = i;
 		int j1 = j;
-		System.out.println("273:" + i1 + " " + j1 + " " + check);
 		for (int c = j-1; c >= 0; c--) { //check to the left for rooks and queens and kings
 			if (Board.isPieceBoard[i][c]) {
 				if (Board.x[i][c].getPieces().s.substring(0,2).equals("bR") ||
@@ -330,7 +325,6 @@ public class King extends Pieces {
 				}
 				else if (i1 == i+1 && j1 == j+1) { //for the pawn check 
 					if (Board.x[i1][j1].getPieces().s.substring(0,2).equals("bp")) {
-					System.out.println("336:"+ i1 + " " + j1 + " " + check);
 							check = true;
 							break;
 					}
@@ -347,13 +341,11 @@ public class King extends Pieces {
 				if (Board.x[i1][j1].getPieces().s.substring(0,2).equals("bB") ||
 					Board.x[i1][j1].getPieces().s.substring(0,2).equals("bQ")||
 					Board.x[i1][j1].getPieces().s.substring(0,2).equals("bK")) {
-					System.out.println("353:" + i1 + " " + j1 + " " + check);
 							check = true;
 							break;
 				}
 				else if (i1 == i+1 && j1 == j-1) { //for the pawn check 
 					if (Board.x[i1][j1].getPieces().s.substring(0,2).equals("bp")) {
-					System.out.println("350:" + i1 + " " + j1 + " " + check);
 							check = true;
 							break;
 					}
@@ -370,13 +362,11 @@ public class King extends Pieces {
 				if (Board.x[i1][j1].getPieces().s.substring(0,2).equals("bB") ||
 					Board.x[i1][j1].getPieces().s.substring(0,2).equals("bQ")||
 					Board.x[i1][j1].getPieces().s.substring(0,2).equals("bK")) {
-					System.out.println("376:" + i1 + " " + j1 + " " + check);
 							check = true;
 							break;
 				}
 				else if (i1 == i-1 && j1 == j-1) { //for the pawn check 
 					if (Board.x[i1][j1].getPieces().s.substring(0,2).equals("bp")) {
-					System.out.println("382:" + i1 + " " + j1 + " " + check);
 							check = true;
 							break;
 					}
@@ -410,7 +400,6 @@ public class King extends Pieces {
 		
 		//check knights
 		i1=i; j1=j;
-		System.out.println("final:" + i1 + " " + j1 + " " + check);
 
 			if (i1-1 >= 0 && j1-2 >= 0  && Board.isPieceBoard[i1-1][j1-2]) {
 				if (Board.x[i1-1][j1-2].getPieces().s.substring(0,2).equals("bN")) {

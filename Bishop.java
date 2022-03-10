@@ -92,7 +92,6 @@ public class Bishop extends Pieces{
 		
 		c = i+1;
 		d = j-1;
-		
 		while (c < 8 && d >= 0) { //bottom left quadrant
 				if (Board.colorMove && Board.isPieceBoard[c][d] && Board.x[c][d].getPieces().s.substring(0,2).equals("bK")) Pieces.checkmate = true;
 				else if (Board.colorMove && Board.isPieceBoard[c][d] ) break;
